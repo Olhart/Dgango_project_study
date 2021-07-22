@@ -9,13 +9,13 @@ Group=www-data
 
 #RuntimeDirectory=gunicorn
 
-WorkingDirectory=template_path/
-ExecStart=template_path/env/bin/gunicorn \
+WorkingDirectory=/home/ninja/Stepic/stepic_web_project/ask/
+ExecStart=/home/ninja/Stepic/stepic_web_project/env/bin/gunicorn \
     --workers 5 \
-    --bind unix:template_path/gunicorn/gunicorn.sock \
-    hello:application \
-    --access-logfile template_path/gunicorn/access.log \
-    --error-logfile template_path/gunicorn/error.log
+    --bind unix:/home/ninja/Stepic/stepic_web_project/gunicorn/gunicorn.sock \
+    ask.wsgi:application \
+    --access-logfile /home/ninja/Stepic/stepic_web_project/gunicorn/access.log \
+    --error-logfile /home/ninja/Stepic/stepic_web_project/gunicorn/error.log
 Restart=on-failure
 
 #ExecReload=/bin/kill -s HUP $MAINPID    

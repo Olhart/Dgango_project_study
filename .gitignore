@@ -1,0 +1,16 @@
+.*/
+env
+__*/
+*.sqlite3
+*.socket
+gunicorn/access.log
+gunicorn/error.log
+systemd/*
+etc/nginx.conf
+
+#*.gem
+#.bundle
+#Gemfile.lock
+#pkg/*
+#*.?xt
+#*.[a-su-z]xt
