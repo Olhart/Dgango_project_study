@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
+from qa.views import NotFound
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,3 +28,5 @@ urlpatterns = [
     path('popular/', include('qa.urls')),
     path('new/', include('qa.urls')),
 ]
+
+handler404 = NotFound

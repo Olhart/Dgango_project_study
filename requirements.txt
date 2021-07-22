@@ -1,1 +1,3 @@
 gunicorn
+django
+psycopg2-binary #for PostgeSQL
