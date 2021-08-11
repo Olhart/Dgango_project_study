@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+
+</head>
+<body>
+    {% include 'qa/menu.html' %}
+    {% block content %}
+    <lu>
+    {% for q in questions %}
+        <li>
+            <h1>{{ q.title }}</h1>
+            <p>{{ q.text }}</p>
+        </li>
+        <li>
+            <a href='{{ q.get_absolute_url }}'>Read</a>
+        </li>          
+    {% endfor %}
+    <a href='{% url home %}?since={{ since }}'>Next</a>
+    </lu>    
+    {% endblock %}
+</body>
+</html>

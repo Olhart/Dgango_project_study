@@ -26,6 +26,7 @@ git mergetool
 string for test itog
 git push --set-upstream origin dev
 git rm -r --cached .idea
-git clone --branch=stepic https://github.com/Olhart/stepic_web_project.git web
+git clone --branch=main https://github.com/Olhart/stepic_web_project.git web
 git push origin --delete <branchName>
 git ls-remote <remote>
+git branch -vv

@@ -7,6 +7,8 @@ gunicorn/access.log
 gunicorn/error.log
 systemd/*
 etc/nginx.conf
+jinja.py
+*.ipynb
 
 #*.gem
 #.bundle

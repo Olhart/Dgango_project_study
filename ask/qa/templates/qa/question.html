@@ -1,0 +1,22 @@
+{% extends "qa/base.html" %}
+{% block content %}
+<h1>{{ question }}</h1>
+<p>{{ question.text }}</p>
+
+<lu>
+{% for answer in answers %}
+    <li>
+        <h3>{{ answer.text }}</h3>
+        <lu>
+            <li>
+                {{ answer.added_at }}
+            </li>
+            <li>
+                {{ answer.author }}
+            </li>
+        </lu>
+       
+    </li>
+{% endfor %}
+</lu>
+{% endblock content %}

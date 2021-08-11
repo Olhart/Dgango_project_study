@@ -13,20 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
 from qa.views import NotFound
+from ask import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('qa.urls')),
-    path('login/', include('qa.urls')),
-    path('signup/', include('qa.urls')),
- #   re_path(r'^question/(?P<ID>.+)/$', include('qa.urls')),
-    path('question/<slug:ID>/', include('qa.urls')),
-    path('ask/', include('qa.urls')),
-    path('popular/', include('qa.urls')),
-    path('new/', include('qa.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = NotFound
