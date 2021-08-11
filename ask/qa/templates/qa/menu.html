@@ -1,0 +1,11 @@
+{% load qa_tags %}
+<div>
+    {% menu_list as menu%}
+    <lu>
+        {% for title, addr in menu.items %}
+        <li>
+            <a href='{% url addr %}'>{{ title }}</a>
+        </li>
+        {% endfor %}
+    </lu>
+</div>

@@ -17,6 +17,12 @@ from django.urls import path
 from qa.views import *
 
 urlpatterns = [
-    path('', test, name='home'),
-    path('tag/<slug:tag>/', test_req),
+    path('', main, name='home'),
+    # path('tag/<slug:tag>/', test_req),
+#     path('login/', include('qa.urls')),
+#     path('signup/', include('qa.urls')),
+    path('question/<slug:q_id>/', question, name="question"),
+#     path('ask/', include('qa.urls')),
+    path('popular/', pop_questions, name='at_pop'),
+    path('new/', new_questions, name='at_new'),
 ]
