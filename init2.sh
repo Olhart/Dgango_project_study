@@ -15,14 +15,16 @@ sudo python3 -m pip install django==2.0
 # mysql -uroot -e "CREATE DATABASE stepic_web;"
 # mysql -uroot -e "GRANT ALL PRIVILEGES ON stepic_web.* TO 'box'@'localhost' WITH GRANT OPTION;"
 
-cp -f copy/nginx.conf etc/
+cp -f copy/nginx2.conf etc/nginx.conf
 
 sed -i "s~template_path~$project_path~g" ./etc/nginx.conf
 sed -i "s~template_domain~$project_domain~g" ./etc/nginx.conf
 
 sudo ln -sf $project_path/etc/nginx.conf /etc/nginx/sites-enabled/
+sudo rm /etc/nginx/sites-enabled/default
 sudo service nginx restart
 
-python3 ask/manage.py makemigrations qa
-python3 ask/manage.py migrate
-gunicorn --bind=0.0.0.0:8000 --workers=2 --timeout=15 --log-level=debug ask/ask.wsgi:application
+# sudo apt install lynx
+# python3 ask/manage.py makemigrations qa
+# python3 ask/manage.py migrate
+# gunicorn --bind=0.0.0.0:8000 --workers=2 --timeout=15 --log-level=debug ask.wsgi:application

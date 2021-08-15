@@ -16,7 +16,7 @@ class QuestionManager(models.Manager): # менеджер модели Question
         return res
 
     def new(self): # метод возвращающий последние добавленные вопросы
-        return self.order_by('-added_at')
+        return self.order_by('-added_at', '-pk')
 
     def popular(self): # метод возвращающий вопросы отсортированные по рейтингу
         return self.order_by('-rating')
@@ -39,7 +39,7 @@ class Question(models.Model):
 class Answer(models.Model): # ответ
     text = models.TextField() # текст ответа
     added_at = models.DateField(auto_now_add=True) # дата добавления ответа
-    question = models.ForeignKey(Question, related_name='', on_delete=models.CASCADE) # вопрос, к которому относится ответ
+    question = models.ForeignKey(Question, on_delete=models.CASCADE) # вопрос, к которому относится ответ
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING) # автор ответа
 
     def __str__(self):

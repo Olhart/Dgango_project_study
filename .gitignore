@@ -1,4 +1,5 @@
 .*/
+init.py
 env
 __*/
 *.sqlite3
@@ -9,6 +10,7 @@ systemd/*
 etc/nginx.conf
 jinja.py
 *.ipynb
+gh.py
 
 #*.gem
 #.bundle
