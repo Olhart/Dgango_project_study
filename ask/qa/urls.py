@@ -22,7 +22,7 @@ urlpatterns = [
 #     path('login/', include('qa.urls')),
 #     path('signup/', include('qa.urls')),
     path('question/<slug:q_id>/', question, name="question"),
-#     path('ask/', include('qa.urls')),
+    path('ask/', ask, name="form_ask"),
     path('popular/', pop_questions, name='at_pop'),
     path('new/', new_questions, name='at_new'),
 ]

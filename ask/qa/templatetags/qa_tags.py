@@ -9,5 +9,6 @@ def menu():
         'Main': 'home',
         'New': 'at_new',
         'Popular': 'at_pop',
+        'Ask': 'form_ask'
     }
     return menu_dict

@@ -19,4 +19,9 @@
     </li>
 {% endfor %}
 </lu>
+<form method='POST' action='{{ question.get_absolute_url }}'>
+    {% csrf_token %}
+    {{ form.as_ul }}
+    <button type="submit">Submit</button>
+</form>
 {% endblock content %}

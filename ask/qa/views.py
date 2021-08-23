@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseNotFound, Http404
+from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator, EmptyPage
 
 from qa.models import *
+from qa.forms import *
 
 def pagination(request, qs):
     try:
@@ -48,10 +49,19 @@ def question(request, **kwargs):
         q = Question.objects.get(pk=kwargs['q_id'])
     except (ObjectDoesNotExist, ValueError):
         raise Http404
-    answ = Answer.objects.filter(question=q)
+    answers = Answer.objects.filter(question=q)
+    if request.method == 'POST':
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save() #q)
+            url = q.get_absolute_url()
+            return HttpResponseRedirect(url)
+    else:
+        form = AnswerForm(initial={'question': kwargs['q_id']})
     context = {
         'question': q,
-        'answers': answ
+        'answers': answers,
+        'form': form
     }
     return render(request, 'qa/question.html', context)
 
@@ -63,6 +73,20 @@ def new_questions(request):
         'since': questions[-1].id,
         'home': 'at_new',
     })
+
+def ask(request):
+    if request.method == 'POST':
+        form = AskForm(request.POST) 
+        if form.is_valid():
+            question = form.save()
+            url = question.get_absolute_url()
+            return HttpResponseRedirect(url)
+    else:
+        form = AskForm()
+    return render(request, 'qa/form_ask.html', {'form': form})
+        
+    
+
 
 def NotFound(request, exception):
     return HttpResponseNotFound("<h1>Page not found</h1>")
